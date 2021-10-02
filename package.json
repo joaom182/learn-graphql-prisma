@@ -15,7 +15,7 @@
     "lint": "eslint --ext .ts .",
     "test": "jest --coverage=false --useStderr --verbose",
     "test:watch": "jest --watchAll --coverage=false --useStderr --verbose",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "yarn prisma generate"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
