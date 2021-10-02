@@ -97,7 +97,7 @@ generator typegraphql {
 }
 ```
 
-> Then run `npx prisma generate` - this will emit the generated TypeGraphQL classes to the @generated/type-graphql folder inside node_modules.
+> Then run `npx prisma generate` - this will emit the generated TypeGraphQL classes to the `src/prisma/generated/type-graphql` folder
 
 # Running migrations
 
@@ -140,7 +140,7 @@ Execute migrations on your `jest-environment-node` file using `execSync` lib.
 const { execSync } = require('child_process');
 const prismaCli = './node_modules/.bin/prisma';
 
-execSync(`${prismaCli} migrate dev`);
+execSync(`${prismaCli} migrate dev --skip-generate --skip-seed`);
 ```
 
 You can load your test environment variables on jest-environment-file using the lib `dotenv`
