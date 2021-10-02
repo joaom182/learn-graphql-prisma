@@ -1,4 +1,34 @@
-# Installing dependencies
+# Installing GraphQL Apollo Server
+
+```
+yarn add apollo-server graphql
+```
+
+# Initializing Apollo Server
+
+app.ts
+```ts
+import { ApolloServer } from 'apollo-server';
+
+const app = new ApolloServer({
+  typeDefs: [],
+  resolvers: {},
+});
+
+export default app;
+```
+
+server.ts
+```ts
+import app from './app';
+const port = process.env.PORT || 5002;
+
+app
+  .listen({ port })
+  .then(() => console.log(`Server is running on port :${port}`));
+```
+
+# Installing Prisma
 
 ```bash
 yarn add prisma -D
@@ -20,7 +50,6 @@ Make sure these configuration are on your `tsconfig.json`
   }
 }
 ```
-
 
 # Initializing a prisma project
 ```bash
@@ -66,7 +95,7 @@ yarn jest --init
 
 # Add these configurations to jest.config.ts
 
-```
+```js
 import { compilerOptions } from './tsconfig.json';
 import { pathsToModuleNameMapper } from 'ts-jest/utils';
 
@@ -105,11 +134,90 @@ Invoke the jest environment file before you execute your tests adding a comment 
 /**
  * @jest-environment ./src/configs/jest-environment
  */
+
+import app from '~/app';
+
+describe('User resolvers', () => {
+  it('should query all users', async () => {
+    const response = await app.executeOperation({
+      query: `
+        query GetAllUsers {
+          users {
+            id
+            age
+            email
+            name
+          }
+        }
+      `,
+    });
+    expect(response.data?.users).toBeTruthy();
+    expect(response.errors).toBeUndefined();
+  });
+});
+```
+
+# Tooling
+
+## Transpiling with Babel
+
+Install Babel plugins as dev dependencies to transpile the code
+```
+yarn add @babel/plugin-transform-typescript babel-plugin-transform-typescript-metadata @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties @babel/preset-typescript -D
+```
+
+Make sure that your `babel.config.js` includes the following configuration:
+```js
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+          targets: {
+            node: 'current',
+          },
+      },
+    ],
+    '@babel/preset-typescript',
+  ],
+  plugins: [
+    ['@babel/plugin-transform-typescript'],
+    ['babel-plugin-transform-typescript-metadata'],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties'],
+  ],
+  ignore: ['**/*.spec.ts'],
+};
+```
+
+## Eslint with GraphQL
+
+Install `eslint-plugin-graphql`
+```
+yarn add eslint-plugin-graphql -D
+```
+
+Change configuration of your .eslintrc.json
+```ts
+module.exports = {
+  rules: {
+    "graphql/template-strings": ['error', {
+      env: 'apollo',
+      // Import your schema JSON here
+      schemaJson: require('./schema.json'),
+    }]
+  },
+  plugins: [
+    'graphql'
+  ]
+}
 ```
 
 # Tips
 - Install [Prisma](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) extension on your VSCode
 
 # Useful links
+- [Modularizing your GraphQL schema code](https://www.apollographql.com/blog/backend/schema-design/modularizing-your-graphql-schema-code/)
+- [apollo-tooling](https://github.com/apollographql/apollo-tooling)
 - [Prisma Docs](https://www.prisma.io/docs/)
 - [Prisma Studio](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/next-steps-typescript-postgres/#explore-the-data-in-prisma-studio)
