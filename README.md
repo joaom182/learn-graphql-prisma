@@ -1,12 +1,17 @@
 # Installing GraphQL Apollo Server
 
+```bash
+yarn add apollo-server graphql type-graphql graphql-scalars graphql-fields
 ```
-yarn add apollo-server graphql
+
+```bash
+yarn add typegraphql-prisma @types/graphql-fields -D
 ```
 
 # Initializing Apollo Server
 
 app.ts
+
 ```ts
 import { ApolloServer } from 'apollo-server';
 
@@ -19,6 +24,7 @@ export default app;
 ```
 
 server.ts
+
 ```ts
 import app from './app';
 const port = process.env.PORT || 5002;
@@ -31,14 +37,14 @@ app
 # Installing Prisma
 
 ```bash
-yarn add prisma -D
-yarn add pg @prisma/client
+yarn add prisma@3.0.1 -D
+yarn add pg @prisma/client@3.0.1
 ```
-
 
 # Configuring
 
 Make sure these configuration are on your `tsconfig.json`
+
 ```json
 {
   "compilerOptions": {
@@ -52,15 +58,17 @@ Make sure these configuration are on your `tsconfig.json`
 ```
 
 # Initializing a prisma project
+
 ```bash
 npx prisma init
 ```
 
 > This command created a new directory called prisma which contains a file named schema.prisma and a .env file in the root of the project. schema.prisma contains the Prisma schema with your database connection and the Prisma Client generator. .env is a dotenv file for defining environment variables (used for your database connection).
 
-
 # Setting up the database connection
+
 Edit your `prisma/schema.prisma` file:
+
 ```prisma
 datasource db {
   provider = "postgresql"
@@ -68,10 +76,28 @@ datasource db {
 }
 ```
 
-Add the connection string to  your `.env` file:
+Add the connection string to your `.env` file:
+
 ```env
 DATABASE_URL="postgresql://<USER>:<PASSWORD>@localhost:5432/<DB_NAME>?schema=public"
 ```
+
+# Configuring typegraphql-prisma
+
+Add to your `prisma/schema.prisma` file:
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "./generated/type-graphql"
+}
+```
+
+> Then run `npx prisma generate` - this will emit the generated TypeGraphQL classes to the @generated/type-graphql folder inside node_modules.
 
 # Running migrations
 
@@ -79,10 +105,10 @@ DATABASE_URL="postgresql://<USER>:<PASSWORD>@localhost:5432/<DB_NAME>?schema=pub
 npx prisma migrate dev --name init
 ```
 
-
 # Integration tests
 
 Install Jest dependencies
+
 ```bash
 yarn add jest-environment-node jest ts-jest @types/jest -D
 ```
@@ -108,8 +134,8 @@ import { pathsToModuleNameMapper } from 'ts-jest/utils';
 }
 ```
 
-
 Execute migrations on your `jest-environment-node` file using `execSync` lib.
+
 ```typescript
 const { execSync } = require('child_process');
 const prismaCli = './node_modules/.bin/prisma';
@@ -118,6 +144,7 @@ execSync(`${prismaCli} migrate dev`);
 ```
 
 You can load your test environment variables on jest-environment-file using the lib `dotenv`
+
 ```typescript
 require('dotenv').config({
   path: '.env.test',
@@ -125,11 +152,13 @@ require('dotenv').config({
 ```
 
 You can overwrite environment variables this way:
+
 ```typescript
 this.global.process.env.DATABASE_URL = process.env.DATABASE_URL = 'NEW_VALUE';
 ```
 
 Invoke the jest environment file before you execute your tests adding a comment block on the top of your test file
+
 ```typescript
 /**
  * @jest-environment ./src/configs/jest-environment
@@ -162,20 +191,22 @@ describe('User resolvers', () => {
 ## Transpiling with Babel
 
 Install Babel plugins as dev dependencies to transpile the code
+
 ```
 yarn add @babel/plugin-transform-typescript babel-plugin-transform-typescript-metadata @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties @babel/preset-typescript -D
 ```
 
 Make sure that your `babel.config.js` includes the following configuration:
+
 ```js
 module.exports = {
   presets: [
     [
       '@babel/preset-env',
       {
-          targets: {
-            node: 'current',
-          },
+        targets: {
+          node: 'current',
+        },
       },
     ],
     '@babel/preset-typescript',
@@ -193,30 +224,35 @@ module.exports = {
 ## Eslint with GraphQL
 
 Install `eslint-plugin-graphql`
+
 ```
 yarn add eslint-plugin-graphql -D
 ```
 
 Change configuration of your .eslintrc.json
+
 ```ts
 module.exports = {
   rules: {
-    "graphql/template-strings": ['error', {
-      env: 'apollo',
-      // Import your schema JSON here
-      schemaJson: require('./schema.json'),
-    }]
+    'graphql/template-strings': [
+      'error',
+      {
+        env: 'apollo',
+        // Import your schema JSON here
+        schemaJson: require('./schema.json'),
+      },
+    ],
   },
-  plugins: [
-    'graphql'
-  ]
-}
+  plugins: ['graphql'],
+};
 ```
 
 # Tips
+
 - Install [Prisma](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) extension on your VSCode
 
 # Useful links
+
 - [Modularizing your GraphQL schema code](https://www.apollographql.com/blog/backend/schema-design/modularizing-your-graphql-schema-code/)
 - [apollo-tooling](https://github.com/apollographql/apollo-tooling)
 - [Prisma Docs](https://www.prisma.io/docs/)

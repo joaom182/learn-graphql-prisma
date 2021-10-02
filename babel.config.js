@@ -19,7 +19,8 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '~src': './src',
+          '~prisma': './src/prisma',
+          '~configs': './src/configs',
         },
       },
     ],

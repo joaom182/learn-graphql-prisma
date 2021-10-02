@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "module": "commonjs",
     "outDir": "dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "moduleResolution": "node",
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "resolveJsonModule": true,
@@ -20,8 +20,10 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "~src/*": ["./src/*"]
+      "~prisma/*": ["./src/prisma/*"],
+      "~configs/*": ["./src/configs/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/prisma/**/*"]
 }
