@@ -50,6 +50,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], UserCreateManyInput.prototype, "name", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], UserCreateManyInput.prototype, "password", void 0);
 UserCreateManyInput = __decorate([
     TypeGraphQL.InputType({
         isAbstract: true

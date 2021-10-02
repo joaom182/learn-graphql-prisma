@@ -51,6 +51,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], UserMinOrderByAggregateInput.prototype, "name", void 0);
+__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    __metadata("design:type", String)
+], UserMinOrderByAggregateInput.prototype, "password", void 0);
 UserMinOrderByAggregateInput = __decorate([
     TypeGraphQL.InputType({
         isAbstract: true

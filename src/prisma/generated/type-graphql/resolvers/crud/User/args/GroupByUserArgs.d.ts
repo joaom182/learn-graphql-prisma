@@ -4,7 +4,7 @@ import { UserWhereInput } from "../../../inputs/UserWhereInput";
 export declare class GroupByUserArgs {
     where?: UserWhereInput | undefined;
     orderBy?: UserOrderByWithAggregationInput[] | undefined;
-    by: Array<"id" | "email" | "name">;
+    by: Array<"id" | "email" | "name" | "password">;
     having?: UserScalarWhereWithAggregatesInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;

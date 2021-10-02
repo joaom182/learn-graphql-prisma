@@ -5,6 +5,7 @@ export declare class User {
     id: number;
     email: string;
     name?: string | null;
+    password?: string | null;
     posts?: Post[];
     profile?: Profile | null;
     _count?: UserCount | null;

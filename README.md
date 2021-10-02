@@ -257,3 +257,4 @@ module.exports = {
 - [apollo-tooling](https://github.com/apollographql/apollo-tooling)
 - [Prisma Docs](https://www.prisma.io/docs/)
 - [Prisma Studio](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/next-steps-typescript-postgres/#explore-the-data-in-prisma-studio)
+- [TypeGraphQL Prisma Docs](https://prisma.typegraphql.com/docs/basics/installation)

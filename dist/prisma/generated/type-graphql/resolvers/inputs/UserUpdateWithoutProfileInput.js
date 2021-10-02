@@ -67,6 +67,10 @@ __decorate([TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput_
   nullable: true
 }), __metadata("design:type", NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput)], UserUpdateWithoutProfileInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput, {
+  nullable: true
+}), __metadata("design:type", NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput)], UserUpdateWithoutProfileInput.prototype, "password", void 0);
+
 __decorate([TypeGraphQL.Field(_type => PostUpdateManyWithoutAuthorInput_1.PostUpdateManyWithoutAuthorInput, {
   nullable: true
 }), __metadata("design:type", PostUpdateManyWithoutAuthorInput_1.PostUpdateManyWithoutAuthorInput)], UserUpdateWithoutProfileInput.prototype, "posts", void 0);

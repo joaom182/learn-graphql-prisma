@@ -65,6 +65,10 @@ __decorate([TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput_
   nullable: true
 }), __metadata("design:type", NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput)], UserUpdateManyMutationInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput, {
+  nullable: true
+}), __metadata("design:type", NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput)], UserUpdateManyMutationInput.prototype, "password", void 0);
+
 UserUpdateManyMutationInput = __decorate([TypeGraphQL.InputType({
   isAbstract: true
 })], UserUpdateManyMutationInput);

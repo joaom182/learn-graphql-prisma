@@ -10,6 +10,7 @@ export declare class UserWhereInput {
     id?: IntFilter | undefined;
     email?: StringFilter | undefined;
     name?: StringNullableFilter | undefined;
+    password?: StringNullableFilter | undefined;
     posts?: PostListRelationFilter | undefined;
     profile?: ProfileRelationFilter | undefined;
 }

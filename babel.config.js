@@ -22,6 +22,7 @@ module.exports = {
           '~/': './src/',
           '~prisma': './src/prisma',
           '~configs': './src/configs',
+          '~modules': './src/modules',
         },
       },
     ],

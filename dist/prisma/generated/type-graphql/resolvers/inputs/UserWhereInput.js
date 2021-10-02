@@ -88,6 +88,10 @@ __decorate([TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilt
   nullable: true
 }), __metadata("design:type", StringNullableFilter_1.StringNullableFilter)], UserWhereInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
+  nullable: true
+}), __metadata("design:type", StringNullableFilter_1.StringNullableFilter)], UserWhereInput.prototype, "password", void 0);
+
 __decorate([TypeGraphQL.Field(_type => PostListRelationFilter_1.PostListRelationFilter, {
   nullable: true
 }), __metadata("design:type", PostListRelationFilter_1.PostListRelationFilter)], UserWhereInput.prototype, "posts", void 0);

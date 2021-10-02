@@ -84,6 +84,10 @@ __decorate([TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter_1.Stri
   nullable: true
 }), __metadata("design:type", StringNullableWithAggregatesFilter_1.StringNullableWithAggregatesFilter)], UserScalarWhereWithAggregatesInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter_1.StringNullableWithAggregatesFilter, {
+  nullable: true
+}), __metadata("design:type", StringNullableWithAggregatesFilter_1.StringNullableWithAggregatesFilter)], UserScalarWhereWithAggregatesInput.prototype, "password", void 0);
+
 UserScalarWhereWithAggregatesInput = UserScalarWhereWithAggregatesInput_1 = __decorate([TypeGraphQL.InputType({
   isAbstract: true
 })], UserScalarWhereWithAggregatesInput);

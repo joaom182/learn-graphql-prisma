@@ -71,6 +71,10 @@ __decorate([TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
   nullable: true
 }), __metadata("design:type", String)], UserOrderByWithRelationInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+  nullable: true
+}), __metadata("design:type", String)], UserOrderByWithRelationInput.prototype, "password", void 0);
+
 __decorate([TypeGraphQL.Field(_type => PostOrderByRelationAggregateInput_1.PostOrderByRelationAggregateInput, {
   nullable: true
 }), __metadata("design:type", PostOrderByRelationAggregateInput_1.PostOrderByRelationAggregateInput)], UserOrderByWithRelationInput.prototype, "posts", void 0);

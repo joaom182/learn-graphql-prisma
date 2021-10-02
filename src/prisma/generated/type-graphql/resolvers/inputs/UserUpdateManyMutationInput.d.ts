@@ -3,4 +3,5 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 export declare class UserUpdateManyMutationInput {
     email?: StringFieldUpdateOperationsInput | undefined;
     name?: NullableStringFieldUpdateOperationsInput | undefined;
+    password?: NullableStringFieldUpdateOperationsInput | undefined;
 }

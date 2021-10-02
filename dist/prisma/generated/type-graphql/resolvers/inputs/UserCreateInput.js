@@ -65,6 +65,10 @@ __decorate([TypeGraphQL.Field(_type => String, {
   nullable: true
 }), __metadata("design:type", String)], UserCreateInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => String, {
+  nullable: true
+}), __metadata("design:type", String)], UserCreateInput.prototype, "password", void 0);
+
 __decorate([TypeGraphQL.Field(_type => PostCreateNestedManyWithoutAuthorInput_1.PostCreateNestedManyWithoutAuthorInput, {
   nullable: true
 }), __metadata("design:type", PostCreateNestedManyWithoutAuthorInput_1.PostCreateNestedManyWithoutAuthorInput)], UserCreateInput.prototype, "posts", void 0);

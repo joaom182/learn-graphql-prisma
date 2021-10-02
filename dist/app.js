@@ -13,7 +13,9 @@ var path = _interopRequireWildcard(require("path"));
 
 var _typeGraphql = require("type-graphql");
 
-var _typeGraphql2 = require("./prisma/generated/type-graphql");
+var _resolvers = require("./modules/posts/resolvers");
+
+var _resolvers2 = require("./modules/users/resolvers");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -23,7 +25,7 @@ const prisma = new _client.PrismaClient();
 
 async function app() {
   const schema = await (0, _typeGraphql.buildSchema)({
-    resolvers: _typeGraphql2.resolvers,
+    resolvers: [..._resolvers2.resolvers, ..._resolvers.resolvers],
     validate: false,
     emitSchemaFile: path.resolve(__dirname, 'schema.gql')
   });

@@ -8,4 +8,5 @@ export declare class UserScalarWhereWithAggregatesInput {
     id?: IntWithAggregatesFilter | undefined;
     email?: StringWithAggregatesFilter | undefined;
     name?: StringNullableWithAggregatesFilter | undefined;
+    password?: StringNullableWithAggregatesFilter | undefined;
 }

@@ -15,22 +15,6 @@ type AggregatePost {
   _sum: PostSumAggregate
 }
 
-type AggregateProfile {
-  _avg: ProfileAvgAggregate
-  _count: ProfileCountAggregate
-  _max: ProfileMaxAggregate
-  _min: ProfileMinAggregate
-  _sum: ProfileSumAggregate
-}
-
-type AggregateQuestion {
-  _avg: QuestionAvgAggregate
-  _count: QuestionCountAggregate
-  _max: QuestionMaxAggregate
-  _min: QuestionMinAggregate
-  _sum: QuestionSumAggregate
-}
-
 type AggregateUser {
   _avg: UserAvgAggregate
   _count: UserCountAggregate
@@ -119,32 +103,18 @@ input IntWithAggregatesFilter {
 
 type Mutation {
   createManyPost(data: [PostCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
-  createManyProfile(data: [ProfileCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
-  createManyQuestion(data: [QuestionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createPost(data: PostCreateInput!): Post!
-  createProfile(data: ProfileCreateInput!): Profile!
-  createQuestion(data: QuestionCreateInput!): Question!
   createUser(data: UserCreateInput!): User!
   deleteManyPost(where: PostWhereInput): AffectedRowsOutput!
-  deleteManyProfile(where: ProfileWhereInput): AffectedRowsOutput!
-  deleteManyQuestion(where: QuestionWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
   deletePost(where: PostWhereUniqueInput!): Post
-  deleteProfile(where: ProfileWhereUniqueInput!): Profile
-  deleteQuestion(where: QuestionWhereUniqueInput!): Question
   deleteUser(where: UserWhereUniqueInput!): User
   updateManyPost(data: PostUpdateManyMutationInput!, where: PostWhereInput): AffectedRowsOutput!
-  updateManyProfile(data: ProfileUpdateManyMutationInput!, where: ProfileWhereInput): AffectedRowsOutput!
-  updateManyQuestion(data: QuestionUpdateManyMutationInput!, where: QuestionWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
-  updateQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   upsertPost(create: PostCreateInput!, update: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
-  upsertProfile(create: ProfileCreateInput!, update: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile!
-  upsertQuestion(create: QuestionCreateInput!, update: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question!
   upsertUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
 }
 
@@ -609,41 +579,6 @@ input PostWhereUniqueInput {
 type Profile {
   bio: String
   id: Int!
-  user: User!
-  userId: Int!
-}
-
-type ProfileAvgAggregate {
-  id: Float
-  userId: Float
-}
-
-input ProfileAvgOrderByAggregateInput {
-  id: SortOrder
-  userId: SortOrder
-}
-
-type ProfileCountAggregate {
-  _all: Int!
-  bio: Int!
-  id: Int!
-  userId: Int!
-}
-
-input ProfileCountOrderByAggregateInput {
-  bio: SortOrder
-  id: SortOrder
-  userId: SortOrder
-}
-
-input ProfileCreateInput {
-  bio: String
-  user: UserCreateNestedOneWithoutProfileInput!
-}
-
-input ProfileCreateManyInput {
-  bio: String
-  id: Int
   userId: Int!
 }
 
@@ -662,52 +597,6 @@ input ProfileCreateWithoutUserInput {
   bio: String
 }
 
-type ProfileGroupBy {
-  _avg: ProfileAvgAggregate
-  _count: ProfileCountAggregate
-  _max: ProfileMaxAggregate
-  _min: ProfileMinAggregate
-  _sum: ProfileSumAggregate
-  bio: String
-  id: Int!
-  userId: Int!
-}
-
-type ProfileMaxAggregate {
-  bio: String
-  id: Int
-  userId: Int
-}
-
-input ProfileMaxOrderByAggregateInput {
-  bio: SortOrder
-  id: SortOrder
-  userId: SortOrder
-}
-
-type ProfileMinAggregate {
-  bio: String
-  id: Int
-  userId: Int
-}
-
-input ProfileMinOrderByAggregateInput {
-  bio: SortOrder
-  id: SortOrder
-  userId: SortOrder
-}
-
-input ProfileOrderByWithAggregationInput {
-  _avg: ProfileAvgOrderByAggregateInput
-  _count: ProfileCountOrderByAggregateInput
-  _max: ProfileMaxOrderByAggregateInput
-  _min: ProfileMinOrderByAggregateInput
-  _sum: ProfileSumOrderByAggregateInput
-  bio: SortOrder
-  id: SortOrder
-  userId: SortOrder
-}
-
 input ProfileOrderByWithRelationInput {
   bio: SortOrder
   id: SortOrder
@@ -718,40 +607,6 @@ input ProfileOrderByWithRelationInput {
 input ProfileRelationFilter {
   is: ProfileWhereInput
   isNot: ProfileWhereInput
-}
-
-enum ProfileScalarFieldEnum {
-  bio
-  id
-  userId
-}
-
-input ProfileScalarWhereWithAggregatesInput {
-  AND: [ProfileScalarWhereWithAggregatesInput!]
-  NOT: [ProfileScalarWhereWithAggregatesInput!]
-  OR: [ProfileScalarWhereWithAggregatesInput!]
-  bio: StringNullableWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  userId: IntWithAggregatesFilter
-}
-
-type ProfileSumAggregate {
-  id: Int
-  userId: Int
-}
-
-input ProfileSumOrderByAggregateInput {
-  id: SortOrder
-  userId: SortOrder
-}
-
-input ProfileUpdateInput {
-  bio: NullableStringFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutProfileInput
-}
-
-input ProfileUpdateManyMutationInput {
-  bio: NullableStringFieldUpdateOperationsInput
 }
 
 input ProfileUpdateOneWithoutUserInput {
@@ -790,23 +645,13 @@ input ProfileWhereUniqueInput {
 
 type Query {
   aggregatePost(cursor: PostWhereUniqueInput, orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): AggregatePost!
-  aggregateProfile(cursor: ProfileWhereUniqueInput, orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): AggregateProfile!
-  aggregateQuestion(cursor: QuestionWhereUniqueInput, orderBy: [QuestionOrderByWithRelationInput!], skip: Int, take: Int, where: QuestionWhereInput): AggregateQuestion!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
   findFirstPost(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): Post
-  findFirstProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
-  findFirstQuestion(cursor: QuestionWhereUniqueInput, distinct: [QuestionScalarFieldEnum!], orderBy: [QuestionOrderByWithRelationInput!], skip: Int, take: Int, where: QuestionWhereInput): Question
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   groupByPost(by: [PostScalarFieldEnum!]!, having: PostScalarWhereWithAggregatesInput, orderBy: [PostOrderByWithAggregationInput!], skip: Int, take: Int, where: PostWhereInput): [PostGroupBy!]!
-  groupByProfile(by: [ProfileScalarFieldEnum!]!, having: ProfileScalarWhereWithAggregatesInput, orderBy: [ProfileOrderByWithAggregationInput!], skip: Int, take: Int, where: ProfileWhereInput): [ProfileGroupBy!]!
-  groupByQuestion(by: [QuestionScalarFieldEnum!]!, having: QuestionScalarWhereWithAggregatesInput, orderBy: [QuestionOrderByWithAggregationInput!], skip: Int, take: Int, where: QuestionWhereInput): [QuestionGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   post(where: PostWhereUniqueInput!): Post
   posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
-  profile(where: ProfileWhereUniqueInput!): Profile
-  profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
-  question(where: QuestionWhereUniqueInput!): Question
-  questions(cursor: QuestionWhereUniqueInput, distinct: [QuestionScalarFieldEnum!], orderBy: [QuestionOrderByWithRelationInput!], skip: Int, take: Int, where: QuestionWhereInput): [Question!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }
@@ -814,125 +659,6 @@ type Query {
 enum QueryMode {
   default
   insensitive
-}
-
-type Question {
-  content: String!
-  id: Int!
-}
-
-type QuestionAvgAggregate {
-  id: Float
-}
-
-input QuestionAvgOrderByAggregateInput {
-  id: SortOrder
-}
-
-type QuestionCountAggregate {
-  _all: Int!
-  content: Int!
-  id: Int!
-}
-
-input QuestionCountOrderByAggregateInput {
-  content: SortOrder
-  id: SortOrder
-}
-
-input QuestionCreateInput {
-  content: String!
-}
-
-input QuestionCreateManyInput {
-  content: String!
-  id: Int
-}
-
-type QuestionGroupBy {
-  _avg: QuestionAvgAggregate
-  _count: QuestionCountAggregate
-  _max: QuestionMaxAggregate
-  _min: QuestionMinAggregate
-  _sum: QuestionSumAggregate
-  content: String!
-  id: Int!
-}
-
-type QuestionMaxAggregate {
-  content: String
-  id: Int
-}
-
-input QuestionMaxOrderByAggregateInput {
-  content: SortOrder
-  id: SortOrder
-}
-
-type QuestionMinAggregate {
-  content: String
-  id: Int
-}
-
-input QuestionMinOrderByAggregateInput {
-  content: SortOrder
-  id: SortOrder
-}
-
-input QuestionOrderByWithAggregationInput {
-  _avg: QuestionAvgOrderByAggregateInput
-  _count: QuestionCountOrderByAggregateInput
-  _max: QuestionMaxOrderByAggregateInput
-  _min: QuestionMinOrderByAggregateInput
-  _sum: QuestionSumOrderByAggregateInput
-  content: SortOrder
-  id: SortOrder
-}
-
-input QuestionOrderByWithRelationInput {
-  content: SortOrder
-  id: SortOrder
-}
-
-enum QuestionScalarFieldEnum {
-  content
-  id
-}
-
-input QuestionScalarWhereWithAggregatesInput {
-  AND: [QuestionScalarWhereWithAggregatesInput!]
-  NOT: [QuestionScalarWhereWithAggregatesInput!]
-  OR: [QuestionScalarWhereWithAggregatesInput!]
-  content: StringWithAggregatesFilter
-  id: IntWithAggregatesFilter
-}
-
-type QuestionSumAggregate {
-  id: Int
-}
-
-input QuestionSumOrderByAggregateInput {
-  id: SortOrder
-}
-
-input QuestionUpdateInput {
-  content: StringFieldUpdateOperationsInput
-}
-
-input QuestionUpdateManyMutationInput {
-  content: StringFieldUpdateOperationsInput
-}
-
-input QuestionWhereInput {
-  AND: [QuestionWhereInput!]
-  NOT: [QuestionWhereInput!]
-  OR: [QuestionWhereInput!]
-  content: StringFilter
-  id: IntFilter
-}
-
-input QuestionWhereUniqueInput {
-  id: Int
 }
 
 enum SortOrder {
@@ -1036,17 +762,20 @@ type UserCountAggregate {
   email: Int!
   id: Int!
   name: Int!
+  password: Int!
 }
 
 input UserCountOrderByAggregateInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: SortOrder
 }
 
 input UserCreateInput {
   email: String!
   name: String
+  password: String
   posts: PostCreateNestedManyWithoutAuthorInput
   profile: ProfileCreateNestedOneWithoutUserInput
 }
@@ -1055,6 +784,7 @@ input UserCreateManyInput {
   email: String!
   id: Int
   name: String
+  password: String
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -1063,32 +793,16 @@ input UserCreateNestedOneWithoutPostsInput {
   create: UserCreateWithoutPostsInput
 }
 
-input UserCreateNestedOneWithoutProfileInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutProfileInput
-  create: UserCreateWithoutProfileInput
-}
-
 input UserCreateOrConnectWithoutPostsInput {
   create: UserCreateWithoutPostsInput!
-  where: UserWhereUniqueInput!
-}
-
-input UserCreateOrConnectWithoutProfileInput {
-  create: UserCreateWithoutProfileInput!
   where: UserWhereUniqueInput!
 }
 
 input UserCreateWithoutPostsInput {
   email: String!
   name: String
+  password: String
   profile: ProfileCreateNestedOneWithoutUserInput
-}
-
-input UserCreateWithoutProfileInput {
-  email: String!
-  name: String
-  posts: PostCreateNestedManyWithoutAuthorInput
 }
 
 type UserGroupBy {
@@ -1100,30 +814,35 @@ type UserGroupBy {
   email: String!
   id: Int!
   name: String
+  password: String
 }
 
 type UserMaxAggregate {
   email: String
   id: Int
   name: String
+  password: String
 }
 
 input UserMaxOrderByAggregateInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: SortOrder
 }
 
 type UserMinAggregate {
   email: String
   id: Int
   name: String
+  password: String
 }
 
 input UserMinOrderByAggregateInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: SortOrder
 }
 
 input UserOrderByWithAggregationInput {
@@ -1135,12 +854,14 @@ input UserOrderByWithAggregationInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: SortOrder
 }
 
 input UserOrderByWithRelationInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
+  password: SortOrder
   posts: PostOrderByRelationAggregateInput
   profile: ProfileOrderByWithRelationInput
 }
@@ -1154,6 +875,7 @@ enum UserScalarFieldEnum {
   email
   id
   name
+  password
 }
 
 input UserScalarWhereWithAggregatesInput {
@@ -1163,6 +885,7 @@ input UserScalarWhereWithAggregatesInput {
   email: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
   name: StringNullableWithAggregatesFilter
+  password: StringNullableWithAggregatesFilter
 }
 
 type UserSumAggregate {
@@ -1176,6 +899,7 @@ input UserSumOrderByAggregateInput {
 input UserUpdateInput {
   email: StringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   posts: PostUpdateManyWithoutAuthorInput
   profile: ProfileUpdateOneWithoutUserInput
 }
@@ -1183,6 +907,7 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -1193,34 +918,16 @@ input UserUpdateOneRequiredWithoutPostsInput {
   upsert: UserUpsertWithoutPostsInput
 }
 
-input UserUpdateOneRequiredWithoutProfileInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutProfileInput
-  create: UserCreateWithoutProfileInput
-  update: UserUpdateWithoutProfileInput
-  upsert: UserUpsertWithoutProfileInput
-}
-
 input UserUpdateWithoutPostsInput {
   email: StringFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   profile: ProfileUpdateOneWithoutUserInput
-}
-
-input UserUpdateWithoutProfileInput {
-  email: StringFieldUpdateOperationsInput
-  name: NullableStringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutAuthorInput
 }
 
 input UserUpsertWithoutPostsInput {
   create: UserCreateWithoutPostsInput!
   update: UserUpdateWithoutPostsInput!
-}
-
-input UserUpsertWithoutProfileInput {
-  create: UserCreateWithoutProfileInput!
-  update: UserUpdateWithoutProfileInput!
 }
 
 input UserWhereInput {
@@ -1230,6 +937,7 @@ input UserWhereInput {
   email: StringFilter
   id: IntFilter
   name: StringNullableFilter
+  password: StringNullableFilter
   posts: PostListRelationFilter
   profile: ProfileRelationFilter
 }

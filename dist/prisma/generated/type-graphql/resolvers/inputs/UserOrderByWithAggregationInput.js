@@ -77,6 +77,10 @@ __decorate([TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
   nullable: true
 }), __metadata("design:type", String)], UserOrderByWithAggregationInput.prototype, "name", void 0);
 
+__decorate([TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+  nullable: true
+}), __metadata("design:type", String)], UserOrderByWithAggregationInput.prototype, "password", void 0);
+
 __decorate([TypeGraphQL.Field(_type => UserCountOrderByAggregateInput_1.UserCountOrderByAggregateInput, {
   nullable: true
 }), __metadata("design:type", UserCountOrderByAggregateInput_1.UserCountOrderByAggregateInput)], UserOrderByWithAggregationInput.prototype, "_count", void 0);

@@ -22,7 +22,8 @@
     "paths": {
       "~/*": ["./src/*"],
       "~prisma/*": ["./src/prisma/*"],
-      "~configs/*": ["./src/configs/*"]
+      "~configs/*": ["./src/configs/*"],
+      "~modules/*": ["./src/modules/*"]
     }
   },
   "include": ["src/**/*"]

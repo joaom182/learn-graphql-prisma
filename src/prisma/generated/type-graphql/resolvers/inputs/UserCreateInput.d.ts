@@ -3,6 +3,7 @@ import { ProfileCreateNestedOneWithoutUserInput } from "../inputs/ProfileCreateN
 export declare class UserCreateInput {
     email: string;
     name?: string | undefined;
+    password?: string | undefined;
     posts?: PostCreateNestedManyWithoutAuthorInput | undefined;
     profile?: ProfileCreateNestedOneWithoutUserInput | undefined;
 }

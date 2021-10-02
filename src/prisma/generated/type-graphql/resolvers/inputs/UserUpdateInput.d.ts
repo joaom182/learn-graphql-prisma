@@ -5,6 +5,7 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
 export declare class UserUpdateInput {
     email?: StringFieldUpdateOperationsInput | undefined;
     name?: NullableStringFieldUpdateOperationsInput | undefined;
+    password?: NullableStringFieldUpdateOperationsInput | undefined;
     posts?: PostUpdateManyWithoutAuthorInput | undefined;
     profile?: ProfileUpdateOneWithoutUserInput | undefined;
 }
