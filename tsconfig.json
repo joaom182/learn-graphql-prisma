@@ -20,10 +20,10 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+      "~/*": ["./src/*"],
       "~prisma/*": ["./src/prisma/*"],
       "~configs/*": ["./src/configs/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/prisma/**/*"]
+  "include": ["src/**/*"]
 }

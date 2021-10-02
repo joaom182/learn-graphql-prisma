@@ -18,7 +18,7 @@ class CustomEnvironment extends NodeEnvironment {
   async setup() {
     process.env.DATABASE_URL = this.connectionString;
     this.global.process.env.DATABASE_URL = this.connectionString;
-    execSync(`${prismaCli} migrate dev`);
+    execSync(`${prismaCli} migrate dev --skip-generate --skip-seed`);
   }
 
   async teardown() {
