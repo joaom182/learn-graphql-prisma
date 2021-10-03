@@ -16,7 +16,7 @@ WORKDIR /usr/app
 
 COPY . .
 RUN yarn
-RUN yarn build
+RUN yarn dist
 
 EXPOSE 5002
 
