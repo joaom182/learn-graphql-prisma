@@ -10,10 +10,14 @@ RUN apk add --no-cache --virtual .build-deps \
     ln -s /usr/local/bin/dist/bin/yarn.js /usr/local/bin/yarn.js && \
     apk del .build-deps
 
+RUN apk add --update --no-cache alpine-sdk
+
 WORKDIR /usr/app
 
 COPY . .
 RUN yarn
 RUN yarn build
+
+EXPOSE 5002
 
 CMD ["yarn", "start"]
